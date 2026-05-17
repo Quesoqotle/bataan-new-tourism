@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Tips | Behold Bataan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/tips.css">
+    <link rel="stylesheet" href="styles/gallery.css">
+    <style>
+        .navbar {
+            z-index: 1050; 
+            background-color: rgba(0, 0, 0, 0.8) !important;
+        }
+
+        .hero {
+            position: relative;
+            height: 50vh;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero-overlay {
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .tip-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark px-4 sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-3" href="index.html">
+            <img src="images/seal.jpg" alt="Bataan seal" style="height: 50px;">
+            <span class="fw-bold text-uppercase">Province of Bataan</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="culture.html">Culture</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gastronomy.html">Gastronomy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="inquiry.html">Inquiry</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <img src="images/bus.jpg" alt="Bataan View" class="hero-bg">
+    <div class="hero-overlay d-flex justify-content-center align-items-center text-center text-white">
+        <div class="container">
+            <h1 class="display-1 fw-bold text-uppercase">Travel Tips</h1>
+        </div>
+    </div>
+</header>
+
+<main class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm tip-card border-0">
+                    <div class="card-body text-center">
+                        <div class="fs-1 mb-3">☀️</div>
+                        <h5 class="fw-bold">Best Time to Visit</h5>
+                        <p class="text-muted">The dry season from November to May is ideal for beach trips and hiking. March and April are especially significant for historical commemorations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm tip-card border-0">
+                    <div class="card-body text-center">
+                        <div class="fs-1 mb-3">🚌</div>
+                        <h5 class="fw-bold">Getting Around</h5>
+                        <p class="text-muted">Buses from Manila (Genesis or Bataan First) go directly to Balanga or Mariveles. Locally, tricycles and jeepneys are the primary modes of transport.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm tip-card border-0">
+                    <div class="card-body text-center">
+                        <div class="fs-1 mb-3">🛡️</div>
+                        <h5 class="fw-bold">Safety Reminders</h5>
+                        <p class="text-muted">Stay hydrated when hiking Mt. Samat. When visiting beaches, follow local lifeguard warnings and be mindful of current changes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm tip-card border-0">
+                    <div class="card-body text-center">
+                        <div class="fs-1 mb-3">💳</div>
+                        <h5 class="fw-bold">Money & ATM</h5>
+                        <p class="text-muted">Major towns like Balanga have plenty of ATMs, but carry enough cash when heading to remote areas or small beach resorts.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm tip-card border-0">
+                    <div class="card-body text-center">
+                        <div class="fs-1 mb-3">🤝</div>
+                        <h5 class="fw-bold">Respect & Etiquette</h5>
+                        <p class="text-muted">Always show respect at war memorials and shrines. It is customary to ask permission before taking photos of locals or private property.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm tip-card border-0">
+                    <div class="card-body text-center">
+                        <div class="fs-1 mb-3">😁</div>
+                        <h5 class="fw-bold">Have Fun</h5>
+                        <p class="text-muted">You are here to have fun and enjoy the breathtaking scenery or the mouth-watering gastronomy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-black text-white py-4">
+    <div class="container text-center">
+        <p class="mb-1 small">© 2026 Bataan Tourism Project | BSIS 2-2</p>
+        <p class="mb-0 small">Made by: <span class="fw-bold">Rhey Mark Iglesia</span></p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

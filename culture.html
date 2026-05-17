@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture | Behold Bataan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/culture-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+        }
+        .festival-card {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .festival-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .hero {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.6); 
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="index.html">
+                <img src="images/seal.jpg" alt="Bataan seal" style="height: 40px;">
+                <span class="fw-bold text-uppercase">Province of Bataan</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="culture.html">Culture</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gastronomy.html">Gastronomy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="inquiry.html">Inquiry</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <img src="images/festival.jpg" alt="Bataan Festivals" class="hero-bg">
+        <div class="container" style="position: relative; z-index: 2;">
+            <h1 class="display-2 fw-bold text-uppercase">Cultural Heritage</h1>
+            <p class="lead">Celebrate the vibrant traditions and festivals of Bataan</p>
+        </div>
+    </header>
+
+    <main class="py-5 bg-light">
+        <div class="container">
+            <div class="row g-4 justify-content-center" id="festivalContainer">
+                </div>
+        </div>
+    </main>
+
+    <footer class="bg-black text-white py-5">
+        <div class="container text-center">
+            <img src="images/footerball.png" alt="Logo" class="mb-3" style="height: 60px;">
+            <p class="mb-1">© 2026 Bataan Tourism Project | BSIS 2-2</p>
+            <p class="mb-0 small">Made by: <span class="fw-bold text-primary">Rhey Mark Iglesia</span></p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="festivalModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const festivals = [
+            {
+                name: "Banga Festival",
+                city: "Balanga City",
+                category: "Festival",
+                image: "images/banga.jpg",
+                shortDesc: "A celebration of the city's namesake, the 'Banga' (clay pot).",
+                fullDesc: "The Banga Festival is an annual week-long celebration in Balanga City. It commemorates the humble clay pot which is central to the city's history and name. The highlight is the street dancing competition where performers carry clay pots on their heads.",
+                schedule: "Last week of April",
+                tips: "Stay for the night events at Plaza Mayor for the best atmosphere."
+            },
+            {
+                name: "Pawikan Festival",
+                city: "Morong",
+                category: "Eco-Cultural",
+                image: "images/pawikanfest.jpg",
+                shortDesc: "Raising awareness for sea turtle conservation through festivities.",
+                fullDesc: "This festival highlights the community's effort to protect the endangered 'Pawikan' (Sea Turtles). It features street dancing, sand castle building, and the symbolic release of turtle hatchlings into the ocean.",
+                schedule: "Late November / Early December",
+                tips: "The morning hatchling release is the most emotional and photogenic part."
+            },
+            {
+                name: "Palis Lasa Festival",
+                city: "Abucay",
+                category: "Religious / Traditional",
+                image: "images/palis.jpg",
+                shortDesc: "Honoring the community spirit and local craftsmanship.",
+                fullDesc: "Palis Lasa celebrates the traditional broom-making industry of Abucay and the town's patron saint. It features vibrant street performances using 'Lasa' (Tiger Grass) as a primary motif in costumes.",
+                schedule: "October",
+                tips: "Great time to buy authentic local handicrafts directly from makers."
+            },
+            {
+                name: "Bakas ng Talaba Festival",
+                city: "Samal",
+                category: "Food / Harvest",
+                image: "images/talaba.jpg",
+                shortDesc: "A thanksgiving celebration for the bounty of the sea.",
+                fullDesc: "Samal is famous for its oysters (talaba) and mussels. This festival is a celebration of the town's aquaculture industry, featuring seafood feasts and dancers in costumes inspired by marine life.",
+                schedule: "Late October",
+                tips: "Come hungry! There are many opportunities to taste the freshest oysters in the province."
+            }
+        ];
+
+        const container = document.getElementById('festivalContainer');
+
+        function renderFestivals() {
+            container.innerHTML = festivals.map((f, index) => `
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 shadow-sm border-0 festival-card" onclick="viewDetails(${index})">
+                        <img src="${f.image}" class="card-img-top" alt="${f.name}">
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-1">${f.name}</h5>
+                            <p class="text-primary small mb-2">📍 ${f.city}</p>
+                            <p class="card-text text-muted small">${f.shortDesc}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function viewDetails(index) {
+            const f = festivals[index];
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <img src="${f.image}" class="img-fluid rounded mb-4 w-100 shadow-sm" style="max-height: 400px; object-fit: cover;">
+                    <h3 class="fw-bold">${f.name}</h3>
+                    <p class="text-primary fw-bold">📍 ${f.city}, Bataan</p>
+                    <hr>
+                    <h5>About the Festival</h5>
+                    <p>${f.fullDesc}</p>
+                    <div class="bg-light p-3 rounded mt-4">
+                        <p class="mb-2"><strong>Annual Schedule:</strong> ${f.schedule}</p>
+                        <p class="mb-0"><strong>Pro Tip:</strong> ${f.tips}</p>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            `;
+            
+            const modalInstance = new bootstrap.Modal(document.getElementById('festivalModal'));
+            modalInstance.show();
+        }
+
+        renderFestivals();
+    </script>
+</body>
+</html>

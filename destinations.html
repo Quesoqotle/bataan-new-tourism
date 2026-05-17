@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination | Behold Bataan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/bataan.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="index.html">
+                <img src="images/seal.jpg" alt="Bataan seal" style="height: 40px;">
+                <span class="fw-bold text-uppercase">Province of Bataan</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="culture.html">Culture</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gastronomy.html">Gastronomy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="inquiry.html">Inquiry</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="destinations-section" class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="display-5 fw-bold">Tara sa Bataan</h2>
+                    <p class="text-muted">Explore our historical sites, beaches, and nature spots</p>
+                    
+                    <div class="row g-3 justify-content-center mt-4">
+                        <div class="col-md-5">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search destination or city...">
+                        </div>
+                        <div class="col-md-3">
+                            <select id="categoryFilter" class="form-select">
+                                <option value="All">All Categories</option>
+                                <option value="Beach">Beach</option>
+                                <option value="Mountain">Mountain</option>
+                                <option value="Waterfall">Waterfall</option>
+                                <option value="Historical Site">Historical Site</option>
+                                <option value="Island">Island</option>
+                                <option value="Food Destination">Food Destination</option>
+                                <option value="Adventure">Adventure</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="destinationContainer"></div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-black text-white py-5">
+        <div class="container text-center">
+            <img src="images/footerball.png" alt="Logo" class="mb-3" style="height: 60px;">
+            <p class="mb-1">© 2026 Bataan Tourism Project | BSIS 2-2</p>
+            <p class="mb-0 small">Made by: <span class="fw-bold text-primary">Rhey Mark Iglesia</span></p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="destinationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const destinations = [
+            {
+                name: "Mount Samat Shrine",
+                city: "Pilar",
+                category: "Historical Site",
+                image: "images/samat.jpg",
+                shortDesc: "A memorial shrine for the heroes of WWII.",
+                fullDesc: "The Dambana ng Kagitingan is a historic shrine located near the summit of Mount Samat. It features a massive 92-meter Memorial Cross.",
+                fee: "₱50.00",
+                hours: "8:00 AM - 5:00 PM",
+                tips: "Visit early morning to avoid the heat."
+            },
+            {
+                name: "Las Casas Filipinas de Acuzar",
+                city: "Bagac",
+                category: "Historical Site",
+                image: "images/las casas.jpg",
+                shortDesc: "Restored Spanish-era heritage houses.",
+                fullDesc: "An open-air museum and heritage park featuring dozens of colonial-era mansions.",
+                fee: "₱1,500.00",
+                hours: "8:00 AM - 8:00 PM",
+                tips: "Wear comfortable walking shoes."
+            },
+            {
+                name: "Anvaya Cove",
+                city: "Morong",
+                category: "Beach",
+                image: "images/beach.jpg",
+                shortDesc: "A premium seaside residential community.",
+                fullDesc: "A high-end destination perfect for family retreats, offering pristine white sands.",
+                fee: "Member/Guest rates apply",
+                hours: "24/7",
+                tips: "Best for private, quiet weekend getaways."
+            },
+            {
+                name: "Five Fingers",
+                city: "Mariveles",
+                category: "Nature",
+                image: "images/fingers.jpg",
+                shortDesc: "Scenic coves and rock formations.",
+                fullDesc: "A series of coves that look like five fingers on a hand when viewed from above.",
+                fee: "Boat rental varies",
+                hours: "6:00 AM - 5:00 PM",
+                tips: "Bring sunscreen and plenty of water."
+            },
+            {
+        name: "Mount Samat Shrine",
+        city: "Pilar",
+        category: "Historical Site",
+        image: "images/samat.jpg",
+        shortDesc: "A memorial shrine for the heroes of WWII.",
+        fullDesc: "The Dambana ng Kagitingan is a historic shrine located near the summit of Mount Samat. It features a massive 92-meter Memorial Cross and a museum dedicated to the defenders of Bataan.",
+        fee: "₱50.00",
+        hours: "8:00 AM - 5:00 PM",
+        tips: "Visit early morning to avoid the heat."
+    },
+    {
+        name: "Zero Km Markers",
+        city: "Bagac & Mariveles",
+        category: "Historical Site",
+        image: "images/zero.jpg",
+        shortDesc: "The starting points of the infamous Death March.",
+        fullDesc: "These markers commemorate the start of the Bataan Death March in April 1942. There are two 'Zero' points: one in Bagac and one in Mariveles.",
+        fee: "Free",
+        hours: "24/7 (Open Area)",
+        tips: "Both locations are accessible along the main highway."
+    },
+    {
+        name: "Flaming Sword Pilar",
+        city: "Pilar",
+        category: "Historical Site",
+        image: "images/pilar.jpg",
+        shortDesc: "A landmark representing the courage of the Filipino soul.",
+        fullDesc: "A massive monument located at the junction leading to Mt. Samat, symbolizing the bravery and resistance of the soldiers who fought in Bataan.",
+        fee: "Free",
+        hours: "24/7 (Open Area)",
+        tips: "It is a great landmark for navigation and photos."
+    },
+    {
+        name: "Saint Dominic de Guzman Parish",
+        city: "Abucay",
+        category: "Historical Site",
+        image: "images/domic.jpg",
+        shortDesc: "One of the oldest churches in the Philippines.",
+        fullDesc: "Built in 1587, this stone church survived several earthquakes and witnessed the fierce battles between Dutch invaders and the local defenders.",
+        fee: "Free (Donations welcome)",
+        hours: "6:00 AM - 7:00 PM",
+        tips: "Please maintain silence and respect as it is an active place of worship."
+    },
+    {
+        name: "Plaza Mayor de Balanga",
+        city: "Balanga City",
+        category: "Historical Site",
+        image: "images/balanga.png",
+        shortDesc: "A Spanish-colonial inspired city center.",
+        fullDesc: "The heart of Balanga City, known for its beautiful European-inspired architecture, the Cathedral, and the impressive City Hall.",
+        fee: "Free",
+        hours: "24/7",
+        tips: "Visit at night to see the plaza beautifully lit up with dancing fountains."
+    },
+    {
+        name: "Mount Natib",
+        city: "Orani",
+        category: "Mountain",
+        image: "images/natib.jpg",
+        shortDesc: "A dormant volcano and popular hiking spot.",
+        fullDesc: "Located within the Bataan National Park, Mt. Natib offers challenging trails and lush biodiversity for seasoned mountaineers.",
+        fee: "₱50.00 (Registration)",
+        hours: "Best for Day Hikes",
+        tips: "Hire a local guide and prepare for a long trek."
+    },
+    {
+        name: "Pasukulan Falls",
+        city: "Abucay",
+        category: "Waterfall",
+        image: "images/pasukulan.jpg",
+        shortDesc: "A hidden gem at the foot of Mt. Natib.",
+        fullDesc: "A majestic waterfall with a high drop, tucked deep within the forests. It requires a significant trek to reach but offers pristine waters.",
+        fee: "Guide fees apply",
+        hours: "6:00 AM - 4:00 PM",
+        tips: "The trail can be slippery; wear high-traction hiking shoes."
+    },
+    {
+        name: "Dunsulan Falls",
+        city: "Pilar",
+        category: "Waterfall",
+        image: "images/dunsulan.jpg",
+        shortDesc: "A relaxing falls near the base of Mt. Samat.",
+        fullDesc: "Conveniently located near the Mt. Samat shrine, Dunsulan Falls is a perfect spot for families to picnic and cool down after sightseeing.",
+        fee: "₱50.00",
+        hours: "8:00 AM - 5:00 PM",
+        tips: "You can reach this via the zipline from Mt. Samat if available."
+    },
+    {
+        name: "Pawikan Conservation Center",
+        city: "Morong",
+        category: "Adventure",
+        image: "images/conservation.jpg",
+        shortDesc: "Help release sea turtles into the ocean.",
+        fullDesc: "A community-based program dedicated to saving endangered sea turtles. Visitors can learn about conservation and witness turtle hatchlings.",
+        fee: "₱20.00",
+        hours: "8:00 AM - 5:00 PM",
+        tips: "The best time to see turtle nesting and releases is from November to February."
+    },
+    {
+        name: "Samal Mangrove Trails",
+        city: "Samal",
+        category: "Adventure",
+        image: "images/mangrove.jpg",
+        shortDesc: "A scenic eco-trail through lush mangroves.",
+        fullDesc: "An eco-tourism destination where you can walk through bamboo bridges and observe various bird species and marine life.",
+        fee: "₱30.00",
+        hours: "7:00 AM - 5:00 PM",
+        tips: "Bring binoculars if you enjoy bird watching."
+    },
+    {
+        name: "Anvaya Cove",
+        city: "Morong",
+        category: "Adventure",
+        image: "images/anvaya.jpg",
+        shortDesc: "Luxury seaside adventure and recreation.",
+        fullDesc: "A world-class residential resort featuring premium amenities, beach activities, and an incredible golf course.",
+        fee: "Guest/Member rates",
+        hours: "24/7 (Resort)",
+        tips: "Pre-booking or membership is required for entry."
+    },
+    {
+        name: "Stella Maris Beach Resort",
+        city: "Bagac",
+        category: "Beach",
+        image: "images/stella.jpg",
+        shortDesc: "A popular family-friendly beach destination.",
+        fullDesc: "Known for its spacious gray sand beach and affordable cottages, it is a favorite for large group outings and reunions.",
+        fee: "₱150.00+",
+        hours: "8:00 AM - 6:00 PM",
+        tips: "Great for day trips; bring your own food for a classic picnic."
+    },
+    {
+        name: "Laki Beach Resort",
+        city: "Mariveles",
+        category: "Beach",
+        image: "images/laki.jpg",
+        shortDesc: "Pristine white sand and clear blue waters.",
+        fullDesc: "One of the most famous beaches in Mariveles, often visited as part of the Five Fingers boat tour. Perfect for swimming and camping.",
+        fee: "₱300.00+",
+        hours: "Best for overnight",
+        tips: "Bring power banks as electricity is limited on the beach."
+    },
+    {
+        name: "Panibatuhan Kayaking",
+        city: "Morong",
+        category: "Adventure",
+        image: "images/panibatuhan.jpg",
+        shortDesc: "Paddle through calm waters and mangroves.",
+        fullDesc: "Experience the serenity of Morong's waters by kayaking through the coastal areas and seeing the local ecosystem up close.",
+        fee: "Rental fees apply",
+        hours: "6:00 AM - 5:00 PM",
+        tips: "Kayaking is best enjoyed during high tide."
+    }
+        ];
+
+        const container = document.getElementById('destinationContainer');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        function renderCards(data) {
+            container.innerHTML = "";
+            if (data.length === 0) {
+                container.innerHTML = `<div class="col-12 text-center text-muted">No destinations found.</div>`;
+                return;
+            }
+
+            data.forEach((item) => {
+                const originalIndex = destinations.indexOf(item);
+                
+                container.innerHTML += `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="${item.image}" class="card-img-top" alt="${item.name}">
+                            <div class="card-body d-flex flex-column">
+                                <span class="badge bg-primary mb-2 w-fit-content" style="width: fit-content;">${item.category}</span>
+                                <h5 class="card-title fw-bold">${item.name}</h5>
+                                <p class="text-muted mb-2 small">📍 ${item.city}, Bataan</p>
+                                <p class="card-text text-secondary mb-4">${item.shortDesc}</p>
+                                <button class="btn btn-outline-dark w-100 mt-auto rounded-pill" onclick="viewDetails(${originalIndex})">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function handleFilter() {
+            const query = searchInput.value.toLowerCase();
+            const category = categoryFilter.value;
+
+            const filtered = destinations.filter(d => {
+                const matchesSearch = d.name.toLowerCase().includes(query) || d.city.toLowerCase().includes(query);
+                const matchesCategory = category === "All" || d.category === category;
+                return matchesSearch && matchesCategory;
+            });
+
+            renderCards(filtered);
+        }
+
+        function viewDetails(index) {
+            const d = destinations[index];
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <img src="${d.image}" class="img-fluid rounded mb-4 w-100 shadow-sm" style="max-height: 400px; object-fit: cover;">
+                    <h3 class="fw-bold">${d.name}</h3>
+                    <p class="text-primary fw-bold">📍 ${d.city}, Bataan</p>
+                    <hr>
+                    <h5>Description</h5>
+                    <p>${d.fullDesc}</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h6><strong>Entrance Fee:</strong></h6>
+                            <p>${d.fee || 'N/A'}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><strong>Opening Hours:</strong></h6>
+                            <p>${d.hours || 'N/A'}</p>
+                        </div>
+                    </div>
+                    ${d.tips ? `<div class="alert alert-info mt-2"><strong>Pro Tip:</strong> ${d.tips}</div>` : ''}
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="inquiry.html" class="btn btn-primary">Book Inquiry</a>
+                </div>
+            `;
+            const modalElement = document.getElementById('destinationModal');
+            const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+            modalInstance.show();
+        }
+
+        searchInput.addEventListener('input', handleFilter);
+        categoryFilter.addEventListener('change', handleFilter);
+
+        renderCards(destinations);
+    </script>
+</body>
+</html>
