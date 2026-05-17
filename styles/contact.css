@@ -1,0 +1,44 @@
+.contact-header {
+    height: auto !important;
+    padding-bottom: 20px;
+}
+
+.contact-page {
+    background: linear-gradient(to bottom, #7fb3c6, #dfc6b2);
+    min-height: 80vh;
+}
+
+.btn-primary:hover {
+    background-color: #a02ddb !important;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.form-label {
+    color: #444;
+}
+
+.form-control:focus {
+    border-color: #bc3eff;
+    box-shadow: 0 0 0 0.25rem rgba(188, 62, 255, 0.25);
+}
+
+.contact-header-info .row {
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-header-info span {
+    white-space: nowrap;
+    letter-spacing: 0.4px;
+}
+
+.contact-header-info img {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    transition: transform 0.2s ease;
+}
+
+.contact-header-info .col-auto:hover img {
+    transform: scale(1.1);
+}

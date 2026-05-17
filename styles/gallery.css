@@ -1,0 +1,14 @@
+.gallery-img {
+    width: 100%;
+    height: 250px; 
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item {
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}

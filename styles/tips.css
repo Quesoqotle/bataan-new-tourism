@@ -1,0 +1,17 @@
+.tips-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/bataan.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .tip-card {
+            transition: transform 0.3s;
+            border: none;
+        }
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
